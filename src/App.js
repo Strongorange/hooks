@@ -1,15 +1,20 @@
 import "./App.css";
 import React, { useState } from "react";
 
+const useInput = (initialValue) => {
+  const [value, setValue] = useState(initialValue);
+  const onChange = (event) => {
+    console.log(event.target);
+  };
+  return { value, onChange };
+};
+
 const App = () => {
-  const [item, setItem] = useState(0);
-  const incrementItem = () => setItem(item + 1);
-  const decrementItem = () => setItem(item - 1);
+  const name = useInput("Mr.");
   return (
     <div>
-      <span>{item}</span>
-      <button onClick={incrementItem}>증가</button>
-      <button onClick={decrementItem}>감소</button>
+      <span>Hello</span>
+      <input placeholder="이름" {...name} />
     </div>
   );
 };
