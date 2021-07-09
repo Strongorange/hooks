@@ -99,3 +99,11 @@ useBeforeLeave 함수에 handleMouseLeave 라는 콜백 함수를 만듬 해당 
 useEffect 는 컴포넌트가 마운트된 후 mouseleave 이벤트와 콜백을 엮고 컴포넌트가 언마운트일시 이벤트를 삭제 dependency 는 공백으로 둬 오직 DidMount 와 WillUnMount 에서만 동작하게 설정
 
 App 에서 useBeforeLeave 의 인자로 begForLife 를 전달해 콘솔출력!
+
+2-5 useFadeIn && useNetwork
+페이드인 효과를 주기위해 css 를 할 수 도 있지만 리액트 자체에서도 가능
+useFadeIn 함수를 만들고 useRef 에서 사용한 것 처럼 element 에 useRef() 를 줌
+element 는 App 에서 HTML 엘리먼트에서 Ref를 지정해주는 녀석들 자체가 됨
+setEffect 훅에서 element.current 를 확인하고 element.current 로 HTML 엘리먼트를 지정선택
+해당 엘리먼트에 .style.transition 으로 애니메이션과 opacity 를 줌!
+useFadeIn 은 return 으로 객체를 반환하는데 객체에는 ref 하는 element 와 opacity 0을 제공하는 값이 들어있고 이걸 App 의 HTML 엘리먼트에서 {...} 형태로 풀어서 HTML 엘리먼트들의 속성으로 지정해 줌

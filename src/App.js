@@ -1,25 +1,25 @@
 import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
 
-const useBeforeLeave = (onBefore) => {
-  const handleMouseLeave = (event) => {
-    const { clientY } = event;
-    if (clientY <= 0) {
-      onBefore();
-    }
-  };
+const useFadeIn = (duration = 1, delay = 0) => {
+  const element = useRef();
   useEffect(() => {
-    document.addEventListener("mouseleave", handleMouseLeave);
-    return () => document.removeEventListener("mouseleave", handleMouseLeave);
+    if (element.current) {
+      const { current } = element;
+      current.style.transition = `opacity ${duration}s ease-in-out ${delay}s`;
+      current.style.opacity = 1;
+    }
   }, []);
+  return { ref: element, style: { opacity: 0 } };
 };
 
 const App = () => {
-  const begForLife = () => console.log("떠나지마!");
-  useBeforeLeave(begForLife);
+  const fadeInH1 = useFadeIn(2, 2);
+  const fadeInP = useFadeIn(5, 3);
   return (
     <div>
-      <h1>Hi!</h1>
+      <h1 {...fadeInH1}>Hi!</h1>
+      <p {...fadeInP}>우와아아아우!!!</p>
     </div>
   );
 };
