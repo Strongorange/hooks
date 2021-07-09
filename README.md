@@ -90,3 +90,12 @@ disablePrevent 는 위의 이벤트를 제거해 줌
 return 으로 두 함수를 반환하고 App 에서 각각 버튼에 onClick 으로 함수실행
 
 이벤트 beforeunload 가 확인창을 띄어주는 역할을 함!
+
+2-4 useBeforeLeave
+마우스가 창을 떠날때 기능을 실행하는 훅
+useBeforeLeave 함수에 handleMouseLeave 라는 콜백 함수를 만듬 해당 콜백함수는
+마우스가 떠날때 clientY 라는 마우스의 Y 축 값을 받아서 마우스가 위로 창을 벗어날때 useBeforeLeave 의 인자 함수인 onBefore 함수를 실행시켜 콘솔에 출력
+
+useEffect 는 컴포넌트가 마운트된 후 mouseleave 이벤트와 콜백을 엮고 컴포넌트가 언마운트일시 이벤트를 삭제 dependency 는 공백으로 둬 오직 DidMount 와 WillUnMount 에서만 동작하게 설정
+
+App 에서 useBeforeLeave 의 인자로 begForLife 를 전달해 콘솔출력!

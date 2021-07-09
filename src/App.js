@@ -1,23 +1,25 @@
 import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
 
-const usePreventLeave = () => {
-  const listener = (event) => {
-    event.preventDefault();
-    event.returnValue = "";
+const useBeforeLeave = (onBefore) => {
+  const handleMouseLeave = (event) => {
+    const { clientY } = event;
+    if (clientY <= 0) {
+      onBefore();
+    }
   };
-  const enablePrevent = () => window.addEventListener("beforeunload", listener);
-  const disablePrevent = () =>
-    window.removeEventListener("beforeunload", listener);
-  return { enablePrevent, disablePrevent };
+  useEffect(() => {
+    document.addEventListener("mouseleave", handleMouseLeave);
+    return () => document.removeEventListener("mouseleave", handleMouseLeave);
+  }, []);
 };
 
 const App = () => {
-  const { enablePrevent, disablePrevent } = usePreventLeave();
+  const begForLife = () => console.log("떠나지마!");
+  useBeforeLeave(begForLife);
   return (
     <div>
-      <button onClick={enablePrevent}>보호</button>
-      <button onClick={disablePrevent}>비보호</button>
+      <h1>Hi!</h1>
     </div>
   );
 };
