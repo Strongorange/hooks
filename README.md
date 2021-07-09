@@ -52,3 +52,24 @@ useTitle 의 return 은 setState 의 title 을 바꿔주는 setTitle 을 return
 App 에서 titleUpdator 는 초기값으로 "Loading..." 을 가지는 useTitle
 useTitle 은 setTitle 을 return 하므로 titleUpdator 는 title 을 바꿀 수 있는 함수가 됨
 2초의 시간지연 후에 titleUpdater 를 사용해서 title 값을 "Home" 으로 바꿔줌
+
+2-2 useClick
+Reference 에 관해서 설명
+Reference 는 우리의 컴포넌트이 어떤 부분을 선택할 수 있는 방법 (getElementbyId 처럼)
+리액트의 모든 엘리멘트들은 reference 속성을 지님
+
+const potato = useRef();
+<input ref={potato} />
+
+potato 는 input 엘리먼트를 지칭함
+setTimeout 을 통해서 3초 뒤에 focus 되게 해주었는데 potato.current 가 undefined 이라는 오류가떠서
+setEffect 를 사용해서 컴포넌트가 마운트 된 후에 동작하게 해서 해결!
+
+--
+App 의 title 은 useClick 을 사용 useRef() 는 element 에 발생하고 element.current 가 있으면 클릭 이벤트에서 onClick 함수 탐재
+그런데 컴포넌트가 UnMount 되면 이벤트를 삭제할 필요가 있음
+함수를 return 함으로 컴포넌트가 언마운트시에 이벤트를 제거해 줌
+
+sayHello 를 가진 useClick 이 mount 되었을때 click 이벤트를 추가해주고
+unmount 시에 이벤트를 제거해 줌
+useEffect 에서 function 을 리턴받으면 componentWillUnMount 에서 호출
