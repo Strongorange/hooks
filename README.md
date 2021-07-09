@@ -107,3 +107,13 @@ element 는 App 에서 HTML 엘리먼트에서 Ref를 지정해주는 녀석들 
 setEffect 훅에서 element.current 를 확인하고 element.current 로 HTML 엘리먼트를 지정선택
 해당 엘리먼트에 .style.transition 으로 애니메이션과 opacity 를 줌!
 useFadeIn 은 return 으로 객체를 반환하는데 객체에는 ref 하는 element 와 opacity 0을 제공하는 값이 들어있고 이걸 App 의 HTML 엘리먼트에서 {...} 형태로 풀어서 HTML 엘리먼트들의 속성으로 지정해 줌
+
+useNetwork
+네트워크의 상태가 바뀔때마다 기능을 하는 함수를 생성 ex) 온라인에서 오프라인으로 갈 시 감지하고 메세지를 띄움
+
+useNetwork 라는 함수 안에서 setState 를 사용해 현재 status 에 navigator.onLine 으로 true, false 를 지정하고 setStatus 생성
+useEffect 를 사용해 온라인과 오프라인 될 시 handleChange 를 실행하는 이벤트생성
+handleChange 에서 useNetwork 의 인자가 함수이면 navigator.onLine 의 true, false 값을 인자로 인자 함수 실행하고 setStatus 로 현재의 상태를 변환함
+
+App 에서 useNetwork 의 return 값인 status (true, false) 를 onLine 이라는 변수로 저장하고 useNetwork 의 인자 함수인 handleNetworkChange 를 보냄
+이렇게 리턴받은 true, false 가지고 true 면 온라인 false 면 offline 을 출력!
