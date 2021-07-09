@@ -155,3 +155,23 @@ App 에서 triggerNoti 에서 인자를 전달함
 https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification
 options 에는 여러가지 옵션을 넣어서 알람을 꾸밀 수 있음 여기서는 간단하게
 서브텍스트 역할인 body 에 텍스트를 넣어서 보냄!
+
+2-8 useAxios
+https://xn--xy1bk56a.run/axios/guide/api.html#http-%EB%A9%94%EC%84%9C%EB%93%9C-%EB%B3%84%EC%B9%AD
+axiosInstance(options) 가 이해가 안되었는데
+axios({
+url,
+method,
+data
+})
+위와 같이 {} 안의 url,method,data 는 axios 가 이해가 가능해 저렇게 사용하는 것 이 가능!
+
+useAxios 파일을 만들어줌
+useAxios 함수에는 options 와 axiosInstance 인자가 있는데 axiosInstance 는 임포트한 axios 그 자체 즉 axiosInstance 를 axios 처럼 사용이 가능하다
+useState 로 state 의 초기값을 객체로 지정해줌
+useEffect 를 사용하여 컴포넌트 마운트 후 axiosInstance(options) 를 사용하여
+App 에서 전달해준 options 에 있는 url 에서 정보를 가져오는 요청을 수행
+해당요청 수행후 나온 data 로 state 를 업데이트
+
+refetch 기능을 하는 버튼을 만들고 useEffect 에서 trigger 를 감시하게 함
+버튼을 누르면 setTrigger 에서 랜덤한 숫자를 나오게하여 트리거를 업데이트 시키고 이를 지켜보고있던 useEffect 에서 axios 에서 데이터를 다시 요청함!

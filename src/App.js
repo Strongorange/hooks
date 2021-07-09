@@ -1,33 +1,19 @@
 import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
-
-const useNotification = (title, options) => {
-  if (!("Notification" in window)) {
-    return;
-  }
-  const fireNoti = () => {
-    if (Notification.permission !== "granted") {
-      Notification.requestPermission().then((permission) => {
-        if (permission == "granted") {
-          new Notification(title, options);
-        } else {
-          return;
-        }
-      });
-    } else {
-      new Notification(title, options);
-    }
-  };
-  return fireNoti;
-};
+import useAxios from "./useAxios";
 
 const App = () => {
-  const triggerNoti = useNotification("Can I steal your kimchi?", {
-    body: "I love kinchi dont't you?",
+  const { loading, data, error, refetch } = useAxios({
+    url: "https://yts.mx/api/v2/list_movies.json",
   });
+  console.log(
+    `loading:${loading}\ndata:${JSON.stringify(data)}\nerror:${error}`
+  );
   return (
     <div>
-      <button onClick={triggerNoti}>알림</button>
+      <h1>{data && data.status}</h1>
+      <h2>{loading ? "Loading" : "done"}</h2>
+      <button onClick={refetch}>REFETCH</button>
     </div>
   );
 };
