@@ -41,3 +41,14 @@ useEffect 는 두가지 인자를 받는데 하나는 함수로서의 effect ex)
 
 만약 component 가 Mount 되었을때 실행시키고 이외의 경우에는 실행시키고 싶지 않다면 빈 [] 를 전달해주면 componentDidMount 처럼 동장
 dependency 에따라 동작이 달라짐
+
+2-1 useTitle
+useTile 에 인자로initialTitle 을 받고 useState 를 사용해서 initialTitle 을 useState 의 초기값으로 설정해줌
+useState 는 title, 과 title 을 변경해주는 setTitle 을 배열으로 반환
+updataTitle 이라는 함수 => 문서에서 title 을 잡고 title 값을 setState 가 주는 title 로 수정해주는 함수
+useEffect 를 사용해서 컴포넌트가 마운트 되었을때, dependency 로 title 을 입력해 title 이 바뀌는 경우 다시 updateTitle 을 실행하기로 함
+useTitle 의 return 은 setState 의 title 을 바꿔주는 setTitle 을 return
+
+App 에서 titleUpdator 는 초기값으로 "Loading..." 을 가지는 useTitle
+useTitle 은 setTitle 을 return 하므로 titleUpdator 는 title 을 바꿀 수 있는 함수가 됨
+2초의 시간지연 후에 titleUpdater 를 사용해서 title 값을 "Home" 으로 바꿔줌
