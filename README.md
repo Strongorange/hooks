@@ -138,3 +138,20 @@ exitFull 에서는 풀스크린에서 나가는데 풀스크린에 진입할때�
 
 App 에서는 useFullscreen 의 리턴을 {} 을 사용하여 꺼내주고 useFullscreen 에 onFullscreen 이라는 함수를 인자로 전달
 div 에 ref 를 사용하여 div 에서 풀스크린 진입을 하게 해줌
+
+2-7 useNotification good!!!!
+https://developer.mozilla.org/ko/docs/Web/API/notification
+알람을 주는 방법 앱 만들때도 유용할 듯
+
+useNotification 는 title, options 를 전달받음
+window 에 Notification 이 없다면 알람을 줄 수 없으므로 여기서 바로 함수를 종료
+fireNoti 이 실제 알람을 생성하는 부분인데 Notification.permission 은 granted,denied, default 를 반환하며 사용자가 알람설정 수신 여부를 알려줌
+수신상태가 granted 가 아니라면 첫번째로 requestPermission 을 통해서 알람수신을 요청함
+https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission
+requestPermission 은 promise 로 permission 을 리턴하는데 granted, denied, default 3가지를 리턴
+permission 이 허가를 뜻하는 granted 일대 new Notification(title, options) 로 알람을 생성하게 하고 granted 가 아닐경우 알람 수신을 거부한 상태이니 함수를 멈추고 알람 생성을 중단
+
+App 에서 triggerNoti 에서 인자를 전달함
+https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification
+options 에는 여러가지 옵션을 넣어서 알람을 꾸밀 수 있음 여기서는 간단하게
+서브텍스트 역할인 body 에 텍스트를 넣어서 보냄!
