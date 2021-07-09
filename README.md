@@ -73,3 +73,10 @@ App 의 title 은 useClick 을 사용 useRef() 는 element 에 발생하고 elem
 sayHello 를 가진 useClick 이 mount 되었을때 click 이벤트를 추가해주고
 unmount 시에 이벤트를 제거해 줌
 useEffect 에서 function 을 리턴받으면 componentWillUnMount 에서 호출
+
+2-3 useConfirm & usePreventLeave
+useConfirm 은 확인창을 띄우고 한번 다시 생각해보게 하는 역할
+useConfirm 이라는 함수를 만들고 빈 message, callback, rejection 함수를 인자로 전달
+callback 과 rejection 의 유효성 검사를 함
+confirmAction 이라는 함수로 window.confirm(message) 를 띄우면 브라우저 자체에서 창이떠서 확인, 취소를 물어 봄 확인을 누르면 true 취소를 누르면 false 가되고
+true, false 에 따라서 callback, rejection 을 실행함
