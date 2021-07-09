@@ -128,3 +128,13 @@ useScroll 은 현재 state 를 리턴하고
 App 에서 리턴받은 state 의 y 값을 받아 y 로 선언
 HTML 엘리멘트에서 전체 스크롤길이를 1000vh 로 하고 hi 글자의 스타일을 지정해
 y 스크롤 값이 400 이상 넘어가면 색깔을 바꿈
+
+useFullscreen
+
+useFullScreen 을 생성하고 element reference 를 지정
+triggerFull 이라는 함수로 풀스크린에 진입하는데 element.current 가 존재하면 해당 엘리먼트에서 풀스크린을 요청하고 인자함수인 onFullScreen 에 true 를 넣어실행
+exitFull 에서는 풀스크린에서 나가는데 풀스크린에 진입할때는 element 에서 진입하는데 빠져나올때는 document 에서 빠져나옴!!!!!! onFullScreen 에 false 제공
+리턴값으로는 {element, triggerFUll, exitFull } 을 리턴함
+
+App 에서는 useFullscreen 의 리턴을 {} 을 사용하여 꺼내주고 useFullscreen 에 onFullscreen 이라는 함수를 인자로 전달
+div 에 ref 를 사용하여 div 에서 풀스크린 진입을 하게 해줌
