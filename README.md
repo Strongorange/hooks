@@ -80,3 +80,13 @@ useConfirm 이라는 함수를 만들고 빈 message, callback, rejection 함수
 callback 과 rejection 의 유효성 검사를 함
 confirmAction 이라는 함수로 window.confirm(message) 를 띄우면 브라우저 자체에서 창이떠서 확인, 취소를 물어 봄 확인을 누르면 true 취소를 누르면 false 가되고
 true, false 에 따라서 callback, rejection 을 실행함
+
+usePreventLeave
+주로 웹사이트에서 글쓰다가 뒤로갈때 한번 경고를 띄워주는 것과 같음
+useProtectLeave 라는 함수를 만드록 안에 event 를 인자로 받는 listener 함수를 생성 listener 는 event의 기본 기능을 막고 returnValue 를 지정해주는데 returnValue 를 지정해주어야 제대로 작동
+
+enablePrevent 는 윈도우에 beforeunload 이벤트와 listner 콜백을 추가해줌
+disablePrevent 는 위의 이벤트를 제거해 줌
+return 으로 두 함수를 반환하고 App 에서 각각 버튼에 onClick 으로 함수실행
+
+이벤트 beforeunload 가 확인창을 띄어주는 역할을 함!

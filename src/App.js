@@ -1,30 +1,23 @@
 import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
 
-const useConfirm = (message = "", callback, rejection) => {
-  if (!callback || typeof callback !== "function") {
-    return;
-  }
-  if (rejection && typeof rejection !== "function") {
-    return;
-  }
-  const confirmAction = () => {
-    if (window.confirm(message)) {
-      callback();
-    } else {
-      rejection();
-    }
+const usePreventLeave = () => {
+  const listener = (event) => {
+    event.preventDefault();
+    event.returnValue = "";
   };
-  return confirmAction;
+  const enablePrevent = () => window.addEventListener("beforeunload", listener);
+  const disablePrevent = () =>
+    window.removeEventListener("beforeunload", listener);
+  return { enablePrevent, disablePrevent };
 };
 
 const App = () => {
-  const deleteWorld = () => console.log("삭제미!!!!");
-  const abort = () => console.log("취소미!!!");
-  const confirmDelete = useConfirm("Are you sure?", deleteWorld, abort);
+  const { enablePrevent, disablePrevent } = usePreventLeave();
   return (
     <div>
-      <button onClick={confirmDelete}>삭제미</button>
+      <button onClick={enablePrevent}>보호</button>
+      <button onClick={disablePrevent}>비보호</button>
     </div>
   );
 };
