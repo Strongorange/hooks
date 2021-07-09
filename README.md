@@ -117,3 +117,14 @@ handleChange 에서 useNetwork 의 인자가 함수이면 navigator.onLine 의 t
 
 App 에서 useNetwork 의 return 값인 status (true, false) 를 onLine 이라는 변수로 저장하고 useNetwork 의 인자 함수인 handleNetworkChange 를 보냄
 이렇게 리턴받은 true, false 가지고 true 면 온라인 false 면 offline 을 출력!
+
+2-6 useScroll & useFullscreen
+useScroll
+useScroll 을 만들고 useState의 초기값으로 {x,y} 로 설정
+useEffect() 의 dependency 를 [] 로 해서 추가 업데이트는 없고 컴포넌트 마운트 이후 스크롤 이벤트를 언마운트일때 이벤트 제거를 추가해줌
+이벤트 콜백 onScroll 에서는 현재 window.scrollX,Y 로 현재 스크롤값을 출력하고 setState 사용해 현재 state 에 스크롤 x,y 값 저장
+useScroll 은 현재 state 를 리턴하고
+
+App 에서 리턴받은 state 의 y 값을 받아 y 로 선언
+HTML 엘리멘트에서 전체 스크롤길이를 1000vh 로 하고 hi 글자의 스타일을 지정해
+y 스크롤 값이 400 이상 넘어가면 색깔을 바꿈
