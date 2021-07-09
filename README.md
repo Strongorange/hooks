@@ -29,3 +29,15 @@ changeItem 은 useState 에서 값을 바꿔주는 setCurrentIndex 를 담아반
 
 App 에서 useTabs 의 초기인덱스를 0으로 전체 배열은 content 배열을 지정해주고 리턴값의 currentItem 과 changeItem 을 뺴내서 const 로 저장
 .map 을 사용하여 버튼을 만들어주고 onClick 이벤트를 사용해서 changeItem 으로 인덱스번호를 인자로 주어 currentItem 을 바꿔줌
+
+2-0 useEffect
+useEffect 는 componentWillUnmount 와 componentDIdMount, componentDidUpdate 와 비슷
+
+useState 를 사용해서 버튼을 누를때마다 각각 number 와 aNumber 를 증가시키는 버튼생성, 각각 버튼을 누를때마다 console.log 가 출력됨
+
+useEffect 는 componentDidMount, componentDidUpdate 의 역할을 함
+useEffect 는 두가지 인자를 받는데 하나는 함수로서의 effect ex) 첫번째 인자로 sayHello 를 적으면 componentDidMount 시 콘솔 출력
+두번째 인자는 바꿀값의 목록, dependency ex) [number] 로 지정하면 aNumber 가 바뀔때는 콘솔출력하지 않음
+
+만약 component 가 Mount 되었을때 실행시키고 이외의 경우에는 실행시키고 싶지 않다면 빈 [] 를 전달해주면 componentDidMount 처럼 동장
+dependency 에따라 동작이 달라짐
